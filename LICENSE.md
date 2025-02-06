@@ -1,19 +1,15 @@
-Copyright 2015-2025 Renzhi Li aka Belleve Invis (https://github.com/be5invis/Iosevka)
+Copyright 2025, the Iosevka Project authors (https://github.com/be5invis/Iosevka)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 
 This license is copied below, and is also available with a FAQ at:
 http://scripts.sil.org/OFL
 
---------------------------
+---
 
+# SIL Open Font License v1.1
 
-SIL Open Font License v1.1
-====================================================
-
-
-Preamble
-----------
+## Preamble
 
 The goals of the Open Font License (OFL) are to stimulate worldwide
 development of collaborative font projects, to support the font creation
@@ -23,16 +19,14 @@ with others.
 
 The OFL allows the licensed fonts to be used, studied, modified and
 redistributed freely as long as they are not sold by themselves. The
-fonts, including any derivative works, can be bundled, embedded, 
+fonts, including any derivative works, can be bundled, embedded,
 redistributed and/or sold with any software provided that any reserved
 names are not used by derivative works. The fonts and derivatives,
 however, cannot be released under any other type of license. The
 requirement for fonts to remain under this license does not apply
 to any document created using the fonts or their derivatives.
 
-
-Definitions
--------------
+## Definitions
 
 `"Font Software"` refers to the set of files released by the Copyright
 Holder(s) under this license and clearly marked as such. This may
@@ -52,9 +46,7 @@ new environment.
 `"Author"` refers to any designer, engineer, programmer, technical
 writer or other person who contributed to the Font Software.
 
-
-Permission & Conditions
-------------------------
+## Permission & Conditions
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of the Font Software, to use, study, copy, merge, embed, modify,
@@ -88,17 +80,13 @@ Software, subject to the following conditions:
    remain under this license does not apply to any document created
    using the Font Software.
 
-
-
-Termination
------------
+## Termination
 
 This license becomes null and void if any of the above conditions are
 not met.
 
-
     DISCLAIMER
-    
+
     THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
     MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
