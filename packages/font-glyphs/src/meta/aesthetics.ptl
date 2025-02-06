@@ -232,7 +232,7 @@ export : define [setFontMetrics para metrics fm] : begin
 
 	set fm.hhea.descender         (Descender - descenderPad)
 	set fm.os2.usWinDescent       ([Math.abs desc] + descenderPad + winMetricDescenderPad)
-	set fm.os2.sTypoDescender     (desc - descenderPad)
+	set fm.os2.sTypoDescender     (Descender - descenderPad)
 
 	set fm.hhea.lineGap           0
 	set fm.os2.sTypoLineGap       (leading - asc + desc)
@@ -269,7 +269,7 @@ export : define [copyFontMetrics fm1 fm2] : begin
 
 	set fm2.hhea.descender         fm1.hhea.descender
 	set fm2.os2.usWinDescent       fm1.os2.usWinDescent
-	set fm2.os2.sTypoDescender     fm1.os2.sTypoDescender
+	set fm2.os2.sTypoDescender     fm1.hhea.descender
 
 	set fm2.hhea.lineGap           fm1.hhea.lineGap
 	set fm2.os2.sTypoLineGap       fm1.os2.sTypoLineGap
