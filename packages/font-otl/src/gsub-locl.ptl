@@ -25,11 +25,8 @@ export : define [buildLOCL gsub para glyphStore] : begin
 	define latnGAG  : gsub.copyLanguage 'latn_GAG ' 'latn_DFLT'
 	define latnJCT  : gsub.copyLanguage 'latn_JCT ' 'latn_DFLT'
 	define latnKAZ  : gsub.copyLanguage 'latn_KAZ ' 'latn_DFLT'
-	define latnKJJ  : gsub.copyLanguage 'latn_KJJ ' 'latn_DFLT'
 	define latnKMZ  : gsub.copyLanguage 'latn_KMZ ' 'latn_DFLT'
 	define latnTAT  : gsub.copyLanguage 'latn_TAT ' 'latn_DFLT'
-	define latnTLY  : gsub.copyLanguage 'latn_TLY ' 'latn_DFLT'
-	define latnUDI  : gsub.copyLanguage 'latn_UDI ' 'latn_DFLT'
 	define latnZZA  : gsub.copyLanguage 'latn_ZZA ' 'latn_DFLT'
 	define latnVIT  : gsub.copyLanguage 'latn_VIT ' 'latn_DFLT'
 	define grekIPPH : gsub.copyLanguage 'grek_IPPH' 'grek_DFLT'
@@ -80,11 +77,8 @@ export : define [buildLOCL gsub para glyphStore] : begin
 	latnGAG.addFeature loclTRK
 	latnJCT.addFeature loclTRK
 	latnKAZ.addFeature loclTRK
-	latnKJJ.addFeature loclTRK
 	latnKMZ.addFeature loclTRK
 	latnTAT.addFeature loclTRK
-	latnTLY.addFeature loclTRK
-	latnUDI.addFeature loclTRK
 	latnZZA.addFeature loclTRK
 	loclTRK.addLookup : createGsubLookupFromGr gsub glyphStore LocalizedForm.TRK
 
