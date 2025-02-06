@@ -234,7 +234,7 @@ export : define [setFontMetrics para metrics fm] : begin
 	set fm.os2.usWinDescent       ([Math.abs desc] + descenderPad + winMetricDescenderPad)
 	set fm.os2.sTypoDescender     (desc - descenderPad)
 
-	set fm.hhea.lineGap           (leading - asc + Descender)
+	set fm.hhea.lineGap           0
 	set fm.os2.sTypoLineGap       (leading - asc + desc)
 
 	set fm.os2.sxHeight           XH
