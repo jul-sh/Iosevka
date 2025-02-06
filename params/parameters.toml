@@ -3,7 +3,7 @@
 ### Changing the numbers may make the builder crash / hang / produce broken shapes.
 
 [iosevka]
-naming.copyright = 'Copyright 2015-{{currentYear}}, Renzhi Li (aka. Belleve Invis, belleve@typeof.net).'
+naming.copyright = 'Copyright 2015-{{currentYear}} Renzhi Li aka Belleve Invis (https://github.com/be5invis/Iosevka)'
 naming.manufacturer = 'Belleve Invis'
 naming.designer = 'Belleve Invis'
 naming.description = 'Spatial efficient monospace font family for programming. Built from code. http://be5invis.github.io/Iosevka'
