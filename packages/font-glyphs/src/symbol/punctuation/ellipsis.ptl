@@ -31,10 +31,6 @@ glyph-block Symbol-Punctuation-Ellipsis : begin
 		local [yp p] : mix (bottom + radius) (top - radius) p
 		foreach [j : range 0 nDots] : include : DrawAt xMid [yp (j / (nDots - 1))] (radius - overshoot)
 
-	define EllipsisDensityVariants : object
-		normal  { 1      (1 / 6) (5 / 6) 1                }
-		dense   { 0.75   (1 / 4) (3 / 4) para.advanceScaleI }
-
 	for-width-kinds WideWidth1 "Ellipsis"
 		foreach { suffix { DrawAt kDotRadius overshoot } } [Object.entries DotVariants] : do
 			create-glyph "\[MangleName 'oneDotLeader'].\(suffix)" : glyph-proc
@@ -52,31 +48,57 @@ glyph-block Symbol-Punctuation-Ellipsis : begin
 				include : DrawAt left  radius (radius - overshoot)
 				include : DrawAt right radius (radius - overshoot)
 
-			foreach { densitySuffix { kDensityScale kDensityLeft kDensityRight kWidthScale } } [Object.entries EllipsisDensityVariants] : do
-				create-glyph "\[MangleName 'ellipsis'].\(suffix)-\(densitySuffix)" : glyph-proc
-					local width : MosaicWidth * [mix kWidthScale 1 (MosaicWidthScalar - 1)]
-					set-width width
-					local radius : [EllipsisDotRadius 3 MosaicWidth] * kDotRadius * kDensityScale
-					local left  : mix 0 width kDensityLeft
-					local right : mix 0 width kDensityRight
-					include : VThreeDotsShape DrawAt radius overshoot left right (+1) 0 (2 * radius)
-					create-forked-glyph "\[MangleName 'mathCDots'].\(suffix)-\(densitySuffix)"
-						ApparentTranslate 0 (SymbolMid - radius)
+			# Normal ellipsis: full MosaicWidth, dots at 1/6–5/6
+			create-glyph "\[MangleName 'ellipsis'].\(suffix)-normal" : glyph-proc
+				set-width MosaicWidth
+				local radius : [EllipsisDotRadius 3 MosaicWidth] * kDotRadius
+				local left  : mix 0 MosaicWidth (1 / 6)
+				local right : mix 0 MosaicWidth (5 / 6)
+				include : VThreeDotsShape DrawAt radius overshoot left right (+1) 0 (2 * radius)
+				create-forked-glyph "\[MangleName 'mathCDots'].\(suffix)-normal"
+					ApparentTranslate 0 (SymbolMid - radius)
 
-				create-glyph : glyph-proc
-					local width : MosaicWidth * [mix kWidthScale 1 (MosaicWidthScalar - 1)]
-					set-width width
-					local left  : mix 0 width kDensityLeft
-					local right : mix 0 width kDensityRight
-					local top : SymbolMid + [Math.max (right - [mix left right 0.5]) ([mix PlusTop OperTop 0.5] - SymbolMid)]
-					local bot : SymbolMid - [Math.max ([mix left right 0.5] - left) (SymbolMid - [mix PlusBot OperBot 0.5])]
-					local radius : [EllipsisDotRadius 3 : Math.min MosaicWidth (top - bot)] * kDotRadius * kDensityScale
-					create-forked-glyph "\[MangleName 'mathCVDots'].\(suffix)-\(densitySuffix)" : begin
-						VThreeDotsShape DrawAt radius overshoot left right   0  (bot - radius) (top + radius)
-					create-forked-glyph "\[MangleName 'mathCD1Dots'].\(suffix)-\(densitySuffix)" : begin
-						VThreeDotsShape DrawAt radius overshoot left right (-1) (bot - radius) (top + radius)
-					create-forked-glyph "\[MangleName 'mathCD2Dots'].\(suffix)-\(densitySuffix)" : begin
-						VThreeDotsShape DrawAt radius overshoot left right (+1) (bot - radius) (top + radius)
+			# Dense ellipsis: narrower in QP via advanceScaleI, dots at 1/4–3/4
+			create-glyph "\[MangleName 'ellipsis'].\(suffix)-dense" : glyph-proc
+				local width : MosaicWidth * [mix 1 para.advanceScaleI (MosaicWidthScalar - 1)]
+				set-width width
+				local radius : [EllipsisDotRadius 3 width] * kDotRadius
+				local left  : mix 0 width (1 / 8)
+				local right : mix 0 width (7 / 8)
+				include : VThreeDotsShape DrawAt radius overshoot left right (+1) 0 (2 * radius)
+				create-forked-glyph "\[MangleName 'mathCDots'].\(suffix)-dense"
+					ApparentTranslate 0 (SymbolMid - radius)
+
+			# Normal math vertical/diagonal dots
+			create-glyph : glyph-proc
+				set-width MosaicWidth
+				local left  : mix 0 MosaicWidth (1 / 6)
+				local right : mix 0 MosaicWidth (5 / 6)
+				local top : SymbolMid + [Math.max (right - [mix left right 0.5]) ([mix PlusTop OperTop 0.5] - SymbolMid)]
+				local bot : SymbolMid - [Math.max ([mix left right 0.5] - left) (SymbolMid - [mix PlusBot OperBot 0.5])]
+				local radius : [EllipsisDotRadius 3 : Math.min MosaicWidth (top - bot)] * kDotRadius
+				create-forked-glyph "\[MangleName 'mathCVDots'].\(suffix)-normal" : begin
+					VThreeDotsShape DrawAt radius overshoot left right   0  (bot - radius) (top + radius)
+				create-forked-glyph "\[MangleName 'mathCD1Dots'].\(suffix)-normal" : begin
+					VThreeDotsShape DrawAt radius overshoot left right (-1) (bot - radius) (top + radius)
+				create-forked-glyph "\[MangleName 'mathCD2Dots'].\(suffix)-normal" : begin
+					VThreeDotsShape DrawAt radius overshoot left right (+1) (bot - radius) (top + radius)
+
+			# Dense math vertical/diagonal dots
+			create-glyph : glyph-proc
+				local width : MosaicWidth * [mix 1 para.advanceScaleI (MosaicWidthScalar - 1)]
+				set-width width
+				local left  : mix 0 width (1 / 8)
+				local right : mix 0 width (7 / 8)
+				local top : SymbolMid + [Math.max (right - [mix left right 0.5]) ([mix PlusTop OperTop 0.5] - SymbolMid)]
+				local bot : SymbolMid - [Math.max ([mix left right 0.5] - left) (SymbolMid - [mix PlusBot OperBot 0.5])]
+				local radius : [EllipsisDotRadius 3 : Math.min width (top - bot)] * kDotRadius
+				create-forked-glyph "\[MangleName 'mathCVDots'].\(suffix)-dense" : begin
+					VThreeDotsShape DrawAt radius overshoot left right   0  (bot - radius) (top + radius)
+				create-forked-glyph "\[MangleName 'mathCD1Dots'].\(suffix)-dense" : begin
+					VThreeDotsShape DrawAt radius overshoot left right (-1) (bot - radius) (top + radius)
+				create-forked-glyph "\[MangleName 'mathCD2Dots'].\(suffix)-dense" : begin
+					VThreeDotsShape DrawAt radius overshoot left right (+1) (bot - radius) (top + radius)
 
 		select-variant [MangleName 'oneDotLeader']  [MangleUnicode 0x2024] (follow -- 'punctuationDot')
 		select-variant [MangleName 'twoDotsLeader'] [MangleUnicode 0x2025] (follow -- 'punctuationDot')
