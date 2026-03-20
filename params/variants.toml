@@ -8520,6 +8520,33 @@ description = "Small punctuations (like `.`, `,`) use square dots"
 selector.punctuationDot = "square"
 
 
+[prime.ellipsis]
+sampler = "…"
+hotChars = "…"
+samplerExplain = "Ellipsis dot density and spacing"
+tagKind = "dot"
+
+[prime.ellipsis.variants.round-normal]
+rank = 1
+description = "Ellipsis with round dots and normal spacing"
+selector.ellipsis = "round-normal"
+
+[prime.ellipsis.variants.square-normal]
+rank = 2
+description = "Ellipsis with square dots and normal spacing"
+selector.ellipsis = "square-normal"
+
+[prime.ellipsis.variants.round-dense]
+rank = 3
+description = "Ellipsis with smaller round dots and tighter spacing"
+selector.ellipsis = "round-dense"
+
+[prime.ellipsis.variants.square-dense]
+rank = 4
+description = "Ellipsis with smaller square dots and tighter spacing"
+selector.ellipsis = "square-dense"
+
+
 
 [prime.braille-dot]
 sampler = "⣝⣑ "
@@ -9534,6 +9561,7 @@ tittle = "round"
 punctuation-dot = "round"
 diacritic-dot = "round"
 braille-dot = "round"
+ellipsis = "round-normal"
 # Symbols
 tilde = "low"
 asterisk = "penta-high"
@@ -9905,6 +9933,7 @@ nine = "closed-contour"
 tittle = "square"
 punctuation-dot = "square"
 diacritic-dot = "square"
+ellipsis = "square-normal"
 asterisk = "hex-low"
 brace = "straight"
 guillemet = "straight"
@@ -10178,6 +10207,7 @@ tittle = "square"
 punctuation-dot = "square"
 diacritic-dot = "square"
 braille-dot = "square"
+ellipsis = "square-normal"
 asterisk = "hex-low"
 underscore = "low"
 brace = "straight"
@@ -10413,6 +10443,7 @@ nine = "closed-contour"
 tittle = "square"
 punctuation-dot = "square"
 diacritic-dot = "square"
+ellipsis = "square-normal"
 brace = "straight"
 guillemet = "straight"
 number-sign = "slanted"
@@ -11266,6 +11297,7 @@ nine = "closed-contour"
 tittle = "square"
 punctuation-dot = "square"
 diacritic-dot = "square"
+ellipsis = "square-normal"
 paren = "large-contour"
 guillemet = "straight"
 number-sign = "slanted"
@@ -11844,6 +11876,7 @@ nine = "closed-contour"
 tittle = "square"
 punctuation-dot = "square"
 diacritic-dot = "square"
+ellipsis = "square-normal"
 asterisk = "hex-low"
 underscore = "low"
 brace = "curly-flat-boundary"
