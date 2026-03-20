@@ -32,8 +32,8 @@ glyph-block Symbol-Punctuation-Ellipsis : begin
 		foreach [j : range 0 nDots] : include : DrawAt xMid [yp (j / (nDots - 1))] (radius - overshoot)
 
 	define EllipsisDensityVariants : object
-		normal  { 1      (1 / 6) (5 / 6) }
-		dense   { 0.75   (1 / 4) (3 / 4) }
+		normal  { 1      (1 / 6) (5 / 6) 1                }
+		dense   { 0.75   (1 / 4) (3 / 4) para.advanceScaleI }
 
 	for-width-kinds WideWidth1 "Ellipsis"
 		foreach { suffix { DrawAt kDotRadius overshoot } } [Object.entries DotVariants] : do
@@ -52,20 +52,22 @@ glyph-block Symbol-Punctuation-Ellipsis : begin
 				include : DrawAt left  radius (radius - overshoot)
 				include : DrawAt right radius (radius - overshoot)
 
-			foreach { densitySuffix { kDensityScale kDensityLeft kDensityRight } } [Object.entries EllipsisDensityVariants] : do
+			foreach { densitySuffix { kDensityScale kDensityLeft kDensityRight kWidthScale } } [Object.entries EllipsisDensityVariants] : do
 				create-glyph "\[MangleName 'ellipsis'].\(suffix)-\(densitySuffix)" : glyph-proc
-					set-width MosaicWidth
+					local width : MosaicWidth * [mix kWidthScale 1 (MosaicWidthScalar - 1)]
+					set-width width
 					local radius : [EllipsisDotRadius 3 MosaicWidth] * kDotRadius * kDensityScale
-					local left  : mix 0 MosaicWidth kDensityLeft
-					local right : mix 0 MosaicWidth kDensityRight
+					local left  : mix 0 width kDensityLeft
+					local right : mix 0 width kDensityRight
 					include : VThreeDotsShape DrawAt radius overshoot left right (+1) 0 (2 * radius)
 					create-forked-glyph "\[MangleName 'mathCDots'].\(suffix)-\(densitySuffix)"
 						ApparentTranslate 0 (SymbolMid - radius)
 
 				create-glyph : glyph-proc
-					set-width MosaicWidth
-					local left  : mix 0 MosaicWidth kDensityLeft
-					local right : mix 0 MosaicWidth kDensityRight
+					local width : MosaicWidth * [mix kWidthScale 1 (MosaicWidthScalar - 1)]
+					set-width width
+					local left  : mix 0 width kDensityLeft
+					local right : mix 0 width kDensityRight
 					local top : SymbolMid + [Math.max (right - [mix left right 0.5]) ([mix PlusTop OperTop 0.5] - SymbolMid)]
 					local bot : SymbolMid - [Math.max ([mix left right 0.5] - left) (SymbolMid - [mix PlusBot OperBot 0.5])]
 					local radius : [EllipsisDotRadius 3 : Math.min MosaicWidth (top - bot)] * kDotRadius * kDensityScale
